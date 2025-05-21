@@ -7,26 +7,8 @@ class receta(ABC):
         self.ingrediente = ingrediente  # ingredientes
         self.pasos = pasos  # pasos
 
-    @abstractmethod
-    def mostrar(self):
-        pass
-
-
-# Clase para recetas vegetarianas
-class recVegetariana(receta):
-    def mostrar(self):
-        print(f"Receta vegetariana: {self.nombre}")
-        print("Ingredientes:")
-        for ing in self.ingrediente:
-            print(f"- {ing}")
-        print("Pasos:")
-        for paso in self.pasos:
-            print(f"{paso}")
-
-
-# Clase para recetas no vegetarianas
-class recNoVegetariana(receta):
-    def mostrar(self):
+    
+    def mostrar_receta(self):
         print(f"Receta NO vegetariana: {self.nombre}")
         print("Ingredientes:")
         for ing in self.ingrediente:
@@ -34,6 +16,22 @@ class recNoVegetariana(receta):
         print("Pasos:")
         for paso in self.pasos:
             print(f"{paso}")
+
+
+# Clase para recetas vegetarianas
+class recVegetariana(receta):
+    def mostrar(self):
+        self.mostrar_receta()
+
+
+
+
+# Clase para recetas no vegetarianas
+class recNoVegetariana(receta):
+    def mostrar(self):
+        self.mostrar_receta()
+
+    
 
 
 # Clase con utilidades del restaurante
@@ -50,7 +48,7 @@ class utilidades:
             print(f"* {ingrediente}")
 
 # Función principal
-def principal():
+def main():
     receta1 = recVegetariana("Ensalada César", ["lechuga", "queso", "pan tostado", "salsa"], ["Lavar", "Mezclar", "Servir"])
     receta2 = recNoVegetariana("Pollo al horno", ["pollo", "patatas", "ajo", "aceite"], ["Preparar", "Hornear", "Servir"])
     
@@ -71,4 +69,4 @@ def principal():
 
 # Ejecutar el programa
 if __name__ == "__main__":
-    principal()
+    main()
