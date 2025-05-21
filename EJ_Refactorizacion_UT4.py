@@ -47,24 +47,57 @@ class utilidades:
         for ingrediente in lista:
             print(f"* {ingrediente}")
 
+    @staticmethod
+    def crear_receta():
+        ingredientes = []
+        pasos = []
+        plato = input("¿Que plato quieres elaborar?: ")
+        num_ingredientes = int(input("Cuantos ingredientes tiene tu plato?: "))
+        for i in range(num_ingredientes):
+            ingrediente = input("Agrega ingrediente:")
+            ingredientes.append(ingrediente)
+        
+        for i in range(3):
+            paso = input("Agrega paso: ")
+            pasos.append(paso)
+        print(f"Ingredientes para {plato}: ")
+        for i in range(len(ingredientes)):
+            print(f"* {ingredientes[i]}")
+        print("-Pasos a seguir: ")
+        for i in range(len(pasos)):
+            print(f" {i}- {pasos[i]}")
+
 # Función principal
 def main():
-    receta1 = recVegetariana("Ensalada César", ["lechuga", "queso", "pan tostado", "salsa"], ["Lavar", "Mezclar", "Servir"])
-    receta2 = recNoVegetariana("Pollo al horno", ["pollo", "patatas", "ajo", "aceite"], ["Preparar", "Hornear", "Servir"])
-    
-    # Duplicación de código al imprimir
-    print("== Mostrar recetas ==")
-    utilidades.imprimir_receta(receta1)
-    utilidades.imprimir_receta(receta2)
+    recetario = []
+    while True:
+        print("1.Crear receta.")
+        print("2.Mostrar receta.")
+        print("3.Salir.")
 
-    # Código duplicado para mostrar ingredientes
-    print("Ingredientes de Ensalada César:")
-    for ing in receta1.ingrediente:
-        print(f"* {ing}")
-    
-    print("Ingredientes de Pollo al horno:")
-    for ing in receta2.ingrediente:
-        print(f"* {ing}")
+        opciones = int(input("Elige una opcion: "))
+        match opciones:
+            
+            case 1:
+                tipo = input("Que tipo de receta quieres crear?")
+                if tipo == "vegetariana":
+                    print("RECETA VEGETARIANA")
+                    receta = utilidades.crear_receta()
+                    recetario.append(receta)
+                elif tipo =="carnivora":
+                    print("RECETA CARNIVORA")
+                    receta = utilidades.crear_receta()
+                    recetario.append(receta)
+
+
+            case 2:
+                utilidades.imprimir_receta(recetario)
+            
+            case 3:
+                break
+
+            case _: 
+                raise ValueError("Opcion no valida")
 
 
 # Ejecutar el programa
